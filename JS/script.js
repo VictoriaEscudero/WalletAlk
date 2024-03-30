@@ -3,21 +3,24 @@ var clave, usuario;
 
 //valores predeterminados
 usuario = "victoria@gmail.com";
-clave = "Usuario123"
+clave = "Usuario123";
 
 //Validación de credenciales
-function verificarCredenciales(event) {
-    const usuarioIngresado = document.getElementById("email").value;
-    const contrasenaIngresada = document.getElementById("password").value;
+const form = document.getElementById('loginForm');
 
-    if(usuarioIngresado === usuario && contrasenaIngresada === clave) {
-        document.getElementById("message").textContent = "Inicio de sesión exitoso";
+form.addEventListener('submit', (event) => {
+//Evita el envío del formulario por defecto
+    event.preventDefault();
+    
+//Obtener los valores de los campos de entrada
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+//Validar las credenciales ingresadas
+    if (email === usuario && password === clave){
+        alert('Inicio de sesión exitoso');
         window.location.href = '../HTML/menu.html';
     }else{
-        document.getElementById("message").textContent = "Credenciales incorrectas";
+        alert('Credenciales incorrectas. Por favor, intente nuevamente.');
     }
-} //cierre
-
-// asociar la funcion al formulario
-document.getElementById("lohin-form").addEventListener("submit", verificarCredenciales);
-
+});
